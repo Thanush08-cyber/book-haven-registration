@@ -1,0 +1,124 @@
+civil.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Civil Book Catalogue</title>
+  <!-- Changed font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(120deg, #e0f7fa, #e3f2fd);
+      color: #2c3e50;
+    }
+    .main-content {
+      background-color: #ffffff;
+      padding: 25px;
+      margin: 25px auto;
+      max-width: 1000px;
+      border-radius: 12px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+      text-align: center;
+    }
+    .main-content h3 {
+      font-size: 24px;
+      font-weight: 600;
+      font-family: 'Roboto Slab', serif;
+      color: #1565c0;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .book-card {
+      background-color: #fafafa;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    .book-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+    .book-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 12px;
+      color: #0d47a1;
+      font-family: 'Roboto Slab', serif;
+    }
+    .book-card p {
+      font-size: 14px;
+      margin: 6px 0;
+      color: #37474f;
+    }
+    .book-card a {
+      display: inline-block;
+      background-color: #1565c0;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-top: 8px;
+      transition: background 0.3s;
+    }
+    .book-card a:hover {
+      background-color: #0d47a1;
+    }
+    @media (max-width: 600px) {
+      .book-grid { grid-template-columns: 1fr; }
+    }
+    /* Footer with your name */
+    .footer {
+      text-align: right;
+      margin: 20px 30px;
+      font-size: 14px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <h3>Civil Engineering Catalogue</h3>
+    <div class="book-grid">
+      <div class="book-card">
+        <h4>Strength of Materials</h4>
+        <p>Author: R.K. Bansal</p>
+        <p>Price: ₹690</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Surveying</h4>
+        <p>Author: B.C. Punmia</p>
+        <p>Price: ₹720</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Building Construction</h4>
+        <p>Author: Sushil Kumar</p>
+        <p>Price: ₹640</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Concrete Technology</h4>
+        <p>Author: M.L. Gambhir</p>
+        <p>Price: ₹780</p>
+        <a href="#">View Details</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    Created by Thanush
+  </div>
+</body>
+</html>

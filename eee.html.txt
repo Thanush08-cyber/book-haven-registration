@@ -1,0 +1,125 @@
+eee.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>EEE Book Catalogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+      color: #2d3748;
+    }
+
+    .main-content {
+      background-color: #ffffff;
+      padding: 25px;
+      margin: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .main-content:hover {
+      transform: translateY(-4px);
+    }
+
+    .main-content h3 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    .book-card {
+      background: #fdfdfd;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .book-card h4 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 12px;
+      color: #111827;
+    }
+
+    .book-card p {
+      font-size: 14px;
+      margin: 4px 0;
+      color: #4b5563;
+    }
+
+    .book-card a {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: background 0.3s ease;
+    }
+
+    .book-card a:hover {
+      background: #1e3a8a;
+    }
+
+    @media (max-width: 600px) {
+      .book-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <h3>Electrical & Electronics Engineering Catalogue</h3>
+    <div class="book-grid">
+      <div class="book-card">
+        <h4>Electrical Machinery</h4>
+        <p>Author: P.S. Bimbhra</p>
+        <p>Price: ₹720</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Power Systems</h4>
+        <p>Author: C.L. Wadhwa</p>
+        <p>Price: ₹690</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Control Systems Engineering</h4>
+        <p>Author: Norman S. Nise</p>
+        <p>Price: ₹810</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Electrical Power Generation</h4>
+        <p>Author: S.N. Singh</p>
+        <p>Price: ₹750</p>
+        <a href="#">View Details</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

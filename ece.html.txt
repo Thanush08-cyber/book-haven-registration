@@ -1,0 +1,145 @@
+ece.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ECE Book Catalogue</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f4f8;
+      color: #222;
+    }
+
+    .main-content {
+      background-color: #fff;
+      padding: 25px;
+      margin: 20px auto;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      max-width: 1000px;
+    }
+
+    .main-content h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0066cc;
+      margin-bottom: 20px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 25px;
+    }
+
+    .book-card {
+      background-color: #fafafa;
+      padding: 18px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .book-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .book-card h4 {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0 0 10px;
+      color: #333;
+    }
+
+    .book-card p {
+      font-size: 14px;
+      margin: 6px 0;
+      color: #555;
+    }
+
+    .book-card a {
+      display: inline-block;
+      background-color: #0066cc;
+      color: #fff;
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-card a:hover {
+      background-color: #004999;
+    }
+
+    .book-card a:focus {
+      outline: 2px solid #004999;
+      outline-offset: 3px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 15px;
+        margin: 10px;
+      }
+
+      .main-content h3 {
+        font-size: 18px;
+      }
+
+      .book-card h4 {
+        font-size: 15px;
+      }
+
+      .book-card p {
+        font-size: 12px;
+      }
+
+      .book-card a {
+        font-size: 12px;
+        padding: 7px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content" aria-label="Electronics and Communication Engineering Book Catalogue">
+    <h3>Electronics & Communication Engineering Catalogue</h3>
+    <div class="book-grid">
+      <div class="book-card">
+        <h4>Electronic Devices and Circuit Theory</h4>
+        <p>Author: Robert L. Boylestad</p>
+        <p>Price: ₹750</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Signals and Systems</h4>
+        <p>Author: Alan V. Oppenheim</p>
+        <p>Price: ₹680</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Digital Signal Processing</h4>
+        <p>Author: John G. Proakis</p>
+        <p>Price: ₹800</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Communication Systems</h4>
+        <p>Author: Simon Haykin</p>
+        <p>Price: ₹780</p>
+        <a href="#">View Details</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

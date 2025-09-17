@@ -1,0 +1,158 @@
+cart.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Haven Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .cart-container {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .cart-container h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #007bff;
+      margin: 0 0 20px;
+    }
+
+    .cart-container table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    .cart-container th,
+    .cart-container td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-container th {
+      background-color: #f1f5f9;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .cart-container td {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .cart-container tr:hover td {
+      background-color: #f9fbff;
+    }
+
+    .total-row td {
+      font-weight: 600;
+      color: #222;
+    }
+
+    .checkout-btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .checkout-btn:hover {
+      background-color: #0056b3;
+    }
+
+    .checkout-btn:focus {
+      outline: 2px solid #007bff;
+      outline-offset: 2px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .cart-container {
+        padding: 15px;
+      }
+      .cart-container h3 {
+        font-size: 18px;
+      }
+      .cart-container th,
+      .cart-container td {
+        font-size: 12px;
+        padding: 8px;
+      }
+      .checkout-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .cart-container table {
+        font-size: 11px;
+      }
+      .cart-container th,
+      .cart-container td {
+        padding: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cart-container" aria-label="Shopping Cart">
+    <h3>Your Cart</h3>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Book Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>The Guide</td>
+          <td>₹200</td>
+          <td>2</td>
+          <td>₹400</td>
+        </tr>
+        <tr>
+          <td>The White Tiger</td>
+          <td>₹250</td>
+          <td>1</td>
+          <td>₹250</td>
+        </tr>
+        <tr class="total-row">
+          <td colspan="3">Total Amount</td>
+          <td>₹650</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="checkout.html" class="checkout-btn">Proceed to Checkout</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+catalogue.html
+<script type="text/javascript">
+  var gk_isXlsx = false;
+  var gk_xlsxFileLookup = {};
+  var gk_fileData = {};
+  function filledCell(cell) {
+    return cell !== '' && cell != null;
+  }
+  function loadFileData(filename) {
+    if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+      try {
+        var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+        var firstSheetName = workbook.SheetNames[0];
+        var worksheet = workbook.Sheets[firstSheetName];
+
+        var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+        var filteredData = jsonData.filter(row => row.some(filledCell));
+
+        var headerRowIndex = filteredData.findIndex((row, index) =>
+          row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+        );
+        if (headerRowIndex === -1 || headerRowIndex > 25) {
+          headerRowIndex = 0;
+        }
+
+        var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+        csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+        return csv;
+      } catch (e) {
+        console.error(e);
+        return "";
+      }
+    }
+    return gk_fileData[filename] || "";
+  }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Haven Main Content</title>
+  <!-- Changed fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(120deg, #e3f2fd, #f1f8e9);
+      color: #263238;
+    }
+
+    .main-content {
+      background-color: #ffffff;
+      padding: 28px;
+      margin: 28px auto;
+      max-width: 1100px;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .main-content h3 {
+      font-size: 26px;
+      font-weight: 700;
+      font-family: 'Libre Baskerville', serif;
+      color: #1a237e;
+      margin: 0 0 20px;
+      letter-spacing: 1px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .book-card {
+      background-color: #fafafa;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+    }
+
+    .book-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 12px;
+      color: #0d47a1;
+      font-family: 'Libre Baskerville', serif;
+    }
+
+    .book-card p {
+      font-size: 14px;
+      margin: 6px 0;
+      color: #455a64;
+    }
+
+    .book-card a {
+      display: inline-block;
+      background-color: #1e88e5;
+      color: white;
+      text-decoration: none;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-card a:hover {
+      background-color: #0d47a1;
+    }
+
+    .book-card a:focus {
+      outline: 2px solid #1e88e5;
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 18px;
+        margin: 12px;
+      }
+      .main-content h3 {
+        font-size: 20px;
+      }
+      .book-card h4 {
+        font-size: 15px;
+      }
+      .book-card p {
+        font-size: 12px;
+      }
+      .book-card a {
+        font-size: 12px;
+        padding: 7px 12px;
+      }
+    }
+
+    .footer {
+      text-align: right;
+      margin: 24px 36px;
+      font-size: 14px;
+      color: #444;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content" aria-label="Main Bookstore Content">
+    <h3>Welcome to Book Haven</h3>
+    <div class="book-grid">
+      <div class="book-card">
+        <h4>The Guide</h4>
+        <p>Author: R.K. Narayan</p>
+        <p>Price: ₹200</p>
+        <a href="cse.html" target="showframe">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>The White Tiger</h4>
+        <p>Author: Aravind Adiga</p>
+        <p>Price: ₹250</p>
+        <a href="ece.html" target="showframe">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>The Immortals of Meluha</h4>
+        <p>Author: Amish Tripathi</p>
+        <p>Price: ₹300</p>
+        <a href="eee.html" target="showframe">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Five Point Someone</h4>
+        <p>Author: Chetan Bhagat</p>
+        <p>Price: ₹150</p>
+        <a href="mech.html" target="showframe">View Details</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    Created by Thanush
+  </div>
+</body>
+</html>

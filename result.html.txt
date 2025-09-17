@@ -1,0 +1,192 @@
+result.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Result Analysis - Book Haven</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap');
+
+    :root {
+      --primary: #009688;
+      --secondary: #00695c;
+      --bg-start: #e0f7fa;
+      --bg-end: #ffffff;
+      --card-bg: rgba(255, 255, 255, 0.85);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .result-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 2.2rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      max-width: 680px;
+      width: 100%;
+      animation: slideUp 0.9s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    h2 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 2rem;
+      margin-bottom: 1.8rem;
+      color: var(--secondary);
+      text-align: center;
+      letter-spacing: 0.5px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 1.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      display: block;
+      color: #222;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input[type="number"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 8px rgba(0, 150, 136, 0.3);
+      outline: none;
+    }
+
+    button {
+      display: block;
+      margin: 1.8rem auto 0;
+      background: var(--primary);
+      border: none;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    }
+
+    .results-box {
+      margin-top: 1.8rem;
+      background: linear-gradient(135deg, #e0f2f1, #ffffff);
+      border-left: 6px solid var(--primary);
+      border-radius: 14px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    }
+
+    .results-box p {
+      margin: 0.6rem 0;
+      font-weight: 600;
+      color: #222;
+    }
+
+    .results-box span {
+      float: right;
+      color: var(--secondary);
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="result-card">
+    <h2>Result Analysis</h2>
+    <form name="form1">
+      <div class="form-grid">
+        <div>
+          <label>Web Technologies</label>
+          <input type="number" name="wt" placeholder="Enter marks">
+        </div>
+        <div>
+          <label>Computer Graphics</label>
+          <input type="number" name="cg" placeholder="Enter marks">
+        </div>
+        <div>
+          <label>Software Testing</label>
+          <input type="number" name="stm" placeholder="Enter marks">
+        </div>
+      </div>
+      <button type="button" onclick="calc()">Calculate</button>
+
+      <div class="results-box">
+        <p>Total: <span id="total">-</span></p>
+        <p>Average: <span id="average">-</span></p>
+        <p>Result: <span id="result">-</span></p>
+        <p>Grade: <span id="grade">-</span></p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    function calc() {
+      let m1 = parseInt(document.form1.wt.value) || 0;
+      let m2 = parseInt(document.form1.cg.value) || 0;
+      let m3 = parseInt(document.form1.stm.value) || 0;
+      let total = m1 + m2 + m3;
+      let avg = total / 3;
+      let result = "", grade = "";
+
+      if (avg >= 70 && m1 >= 40 && m2 >= 40 && m3 >= 40) {
+        result = "Distinction"; grade = "A+";
+      } else if (avg >= 60) {
+        result = "First Class"; grade = "A";
+      } else if (avg >= 50) {
+        result = "Second Class"; grade = "B";
+      } else if (avg >= 40) {
+        result = "Pass"; grade = "C";
+      } else {
+        result = "Fail"; grade = "D";
+      }
+
+      document.getElementById("total").textContent = total;
+      document.getElementById("average").textContent = avg.toFixed(2);
+      document.getElementById("result").textContent = result;
+      document.getElementById("grade").textContent = grade;
+    }
+  </script>
+</body>
+
+</html>

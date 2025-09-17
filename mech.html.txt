@@ -1,0 +1,131 @@
+mech.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mechanical Book Catalogue</title>
+  <!-- New Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #eef2f7;
+      color: #2c2c2c;
+    }
+
+    .main-content {
+      background-color: #ffffff;
+      padding: 25px;
+      margin: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    .main-content h3 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #0056b3;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .book-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .book-card {
+      background-color: #fafafa;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .book-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+
+    .book-card h4 {
+      font-size: 17px;
+      font-weight: 600;
+      margin: 0 0 10px;
+      color: #003366;
+    }
+
+    .book-card p {
+      font-size: 14px;
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .book-card a {
+      display: inline-block;
+      background-color: #0056b3;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .book-card a:hover {
+      background-color: #003f80;
+    }
+
+    @media (max-width: 600px) {
+      .book-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Simple fade-in animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content">
+    <h3>Mechanical Engineering Catalogue</h3>
+    <div class="book-grid">
+      <div class="book-card">
+        <h4>Engineering Thermodynamics</h4>
+        <p>Author: P.K. Nag</p>
+        <p>Price: ₹780</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Fluid Mechanics</h4>
+        <p>Author: R.K. Bansal</p>
+        <p>Price: ₹720</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Theory of Machines</h4>
+        <p>Author: S.S. Rattan</p>
+        <p>Price: ₹750</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Machine Design</h4>
+        <p>Author: V.B. Bhandari</p>
+        <p>Price: ₹800</p>
+        <a href="#">View Details</a>
+      </div>
+      <div class="book-card">
+        <h4>Manufacturing Processes</h4>
+        <p>Author: P.N. Rao</p>
+        <p>Price: ₹770</p>
+        <a href="#">View Details</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

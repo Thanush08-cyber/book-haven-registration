@@ -1,0 +1,122 @@
+frame3.html
+<script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Haven Main Content</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #f4f7fb, #eef2f9);
+      color: #2c3e50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .main-content {
+      background-color: #ffffff;
+      padding: 25px;
+      margin: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      box-sizing: border-box;
+      text-align: center;
+      width: 100%;
+      max-width: 650px;
+      transition: transform 0.3s ease;
+    }
+
+    .main-content:hover {
+      transform: translateY(-5px);
+    }
+
+    .main-content h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #3742fa;
+      margin: 0 0 18px;
+      letter-spacing: 1px;
+    }
+
+    .main-content img {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 15px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .main-content img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 600px) {
+      .main-content {
+        padding: 18px;
+        margin: 12px;
+      }
+      .main-content h3 {
+        font-size: 19px;
+      }
+      .main-content img {
+        max-width: 220px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .main-content img {
+        max-width: 160px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-content" aria-label="Main Bookstore Content">
+    <h3>Welcome to Book Haven</h3>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR121TY7_vXMvhS-f7V_XphmUfIHYc-xBgLcw&s" alt="Book Haven Welcome Image">
+  </div>
+</body>
+</html>

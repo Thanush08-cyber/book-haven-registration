@@ -1,0 +1,141 @@
+frame2.html
+<script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Haven Sidebar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f6f9;
+      color: #222;
+    }
+
+    .sidebar {
+      background: linear-gradient(180deg, #ffffff, #f0f4ff);
+      padding: 22px;
+      height: 100%;
+      box-shadow: 3px 0 8px rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+      border-right: 2px solid #e0e7ff;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+
+    .sidebar li {
+      margin: 12px 0;
+      width: 100%;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #3742fa;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .sidebar a:hover {
+      background-color: #d6e4ff;
+      color: #1a237e;
+      transform: translateX(4px);
+    }
+
+    .sidebar a::before {
+      content: '📘';
+      position: absolute;
+      left: -28px;
+      opacity: 0;
+      transition: opacity 0.3s ease, left 0.3s ease;
+    }
+
+    .sidebar a:hover::before {
+      left: -22px;
+      opacity: 1;
+    }
+
+    .sidebar a:focus {
+      outline: 2px solid #3742fa;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .sidebar {
+        padding: 15px;
+      }
+      .sidebar a {
+        font-size: 13px;
+        padding: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <nav aria-label="Book Categories">
+      <ul>
+        <li><a href="cse.html" target="showframe">CSE</a></li>
+        <li><a href="ece.html" target="showframe">ECE</a></li>
+        <li><a href="eee.html" target="showframe">EEE</a></li>
+        <li><a href="mech.html" target="showframe">MECH</a></li>
+        <li><a href="chem.html" target="showframe">CHEM</a></li>
+        <li><a href="it.html" target="showframe">IT</a></li>
+        <li><a href="civil.html" target="showframe">CIVIL</a></li>
+      </ul>
+    </nav>
+  </div>
+</body>
+</html>

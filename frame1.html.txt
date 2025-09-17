@@ -1,0 +1,171 @@
+frame1.html
+<script type="text/javascript">
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+      return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Haven Header</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #eef2f7;
+      color: #222;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #4a90e2, #003d80);
+      color: white;
+      padding: 18px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .header img {
+      max-width: 140px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 12px;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .header img:hover {
+      transform: scale(1.08);
+      filter: brightness(1.1);
+    }
+
+    .nav-table {
+      width: auto;
+      margin: 0 auto;
+    }
+
+    .nav-table tr {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-table th {
+      padding: 0 18px;
+    }
+
+    .nav-table a {
+      position: relative;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding-bottom: 5px;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav-table a:hover {
+      color: #ffe066;
+      transform: translateY(-2px);
+    }
+
+    .nav-table a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ffe066;
+      transition: width 0.3s ease;
+    }
+
+    .nav-table a:hover::after {
+      width: 100%;
+    }
+
+    .nav-table a:focus {
+      outline: 2px solid #ffe066;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 12px;
+      }
+      .header img {
+        max-width: 110px;
+      }
+      .nav-table th {
+        padding: 0 8px;
+      }
+      .nav-table a {
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .nav-table tr {
+        flex-direction: column;
+        align-items: center;
+      }
+      .nav-table th {
+        padding: 6px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <a href="index.html" target="_top" style="width: 100px; height: 100px;">
+      <img src="https://i.postimg.cc/ry3hSQFx/bookhavenlogo.png" alt="Book Haven Logo">
+    </a>
+    <table class="nav-table">
+      <tr>
+        <th><a href="login.html" target="showframe">Login</a></th>
+        <th><a href="valid.html" target="showframe">Registration</a></th>
+        <th><a href="catalogue.html" target="showframe">Catalogue</a></th>
+        <th><a href="cart.html" target="showframe">Cart</a></th>
+        <th><a href="result.html" target="showframe">Result</a></th>
+        <th><a href="profile.html" target="showframe">Profile</a></th>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

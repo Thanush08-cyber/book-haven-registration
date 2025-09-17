@@ -1,0 +1,133 @@
+style.css
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+/* Title Section */
+.title {
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.title p {
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Horizontal Lines */
+hr {
+    width: 95%;
+    height: 2px;
+    background-color: #666;
+    border: none;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+hr#hr2 { top: 25%; }
+hr#hr3 { top: 47%; }
+hr#hr4 { top: 75%; }
+
+/* Personal Info */
+.pinfo {
+    display: flex;
+    gap: 15px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #555;
+    font-size: 14px;
+}
+
+/* Education Section */
+.education {
+    position: absolute;
+    top: 27%;
+    left: 6%;
+}
+.education h2 {
+    color: #1a73e8;
+    margin-bottom: 5px;
+}
+.education h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+.education p {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* Technical Section */
+.Technical {
+    position: absolute;
+    top: 49%;
+    left: 6%;
+}
+.Technical h2 {
+    color: #1a73e8;
+    margin-bottom: 5px;
+}
+.Technical h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+.Technical p {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-left: 20px;
+}
+
+/* Experiences Section */
+.experiences {
+    position: absolute;
+    top: 65%;
+    left: 6%;
+}
+.experiences h2 {
+    color: #1a73e8;
+    margin-bottom: 5px;
+}
+.experiences p {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.experiences li {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-left: 18px;
+}
+
+/* Projects Section */
+.projects {
+    position: absolute;
+    top: 78%;
+    left: 6%;
+}
+.projects h2 {
+    color: #1a73e8;
+    margin-bottom: 5px;
+}
+.projects h3 {
+    font-size: 15px;
+    font-weight: 600;
+}
+.projects li {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-left: 18px;
+}
